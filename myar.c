@@ -35,36 +35,18 @@ char *file_perm_string(mode_t perm, int flags);
 
 int main(int argc, char **argv)
 {
-	char *key = argv[1];
-	char *archive;
 	DIR *dp;
-	int numfiles = argc - 3;
-	int i,x,c,flag,offset;
-	unsigned long filesize;
-	int in_fd;
-	int out_fd;
-	int keep;
-	int location = 0;
-	int exists = 0;
-	int num_read;
-	int spot_optind;
-	int del_read;
-	int match_read;
-	int total_written;
-	int num_written = 0;
-	long temp;
-	char read_buf[BLOCKSIZE];
-	char backup[BLOCKSIZE];
-	char match_buf[BLOCKSIZE];
-	char header[HEADER_SIZE];
-	char name[16];
-	char *filenamematch;
-	char *headermatch;
+
+	char *archive;
 	char *permstring;
-	char minibuf[1];
+	char read_buf[BLOCKSIZE], header[HEADER_SIZE], name[16], minibuf[1];
 	static char timestr[100];
+
+	unsigned long filesize;
+	long temp;
+	int i,x,c,flag, in_fd, out_fd, keep, num_read, spot_optind, del_read, match_read, total_written, exists = 0, num_written = 0;
+	
 	struct stat stat_buf;
-	struct ar_hdr fileheader;
 	struct ar_hdr extractheader;
 	struct utimbuf utimeStruct;
 	struct tm *timestruct;
@@ -130,7 +112,7 @@ int main(int argc, char **argv)
 					exit(-1);
 				}
 
-				location = 0;
+				
 
 				/* Elimnates end line caused by snprintf */
 				lseek(out_fd, -1, SEEK_CUR);
