@@ -52,6 +52,9 @@ int main(int argc, char **argv)
 	struct tm *timestruct;
 	struct dirent *entry;
 
+	extern char *optarg;
+	extern int optind;
+
 
 	while ((c = getopt (argc, argv, "A:v:t:d:x:q:")) != -1)
 	switch(c){
